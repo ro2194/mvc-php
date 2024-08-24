@@ -1,0 +1,17 @@
+{
+    "name": "silva/mvc-php-site",
+    "description": "projeto site",
+    "authors": [
+        {
+            "name": "Ronaldo Pereira Da Silva",
+            "email": "silva.ronaldosilva.ronaldo7@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core"
+        }
+    },
+    "require": {}
+}
