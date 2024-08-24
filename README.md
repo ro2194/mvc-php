@@ -17,3 +17,9 @@ Este projeto é uma aplicação PHP utilizando o padrão MVC (Model-View-Control
    ```bash
    cd C:\xampp\htdocs
    git clone https://github.com/seu-usuario/meu_projeto.git
+
+ 
+2. **Instalar as Dependências com Composer:**
+
+   cd meu_projeto
+   composer install
