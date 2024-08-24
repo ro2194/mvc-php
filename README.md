@@ -20,6 +20,6 @@ Este projeto é uma aplicação PHP utilizando o padrão MVC (Model-View-Control
 
  
 2. **Instalar as Dependências com Composer:**
-
+   ```bash
    cd meu_projeto
    composer install
