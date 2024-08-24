@@ -1,10 +1,12 @@
-# mvc-php
+# MVC PHP
 
+Este projeto é uma aplicação PHP utilizando o padrão MVC (Model-View-Controller). Foi desenvolvido para ser executado em um servidor local, como o XAMPP, e é compatível com PHP 8.
 
 ## Pré-requisitos
 
 - [XAMPP](https://www.apachefriends.org/index.html) instalado em sua máquina.
-- PHP 8.
+- PHP 8 ou superior.
+- [Composer](https://getcomposer.org/) para gerenciamento de dependências (se aplicável).
 
 ## Configuração
 
@@ -15,7 +17,3 @@
    ```bash
    cd C:\xampp\htdocs
    git clone https://github.com/seu-usuario/meu_projeto.git
-
-
-
-
