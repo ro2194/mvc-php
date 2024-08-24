@@ -2,68 +2,105 @@
 
 namespace Core;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+//if (!defined('C7E3L8K9E5')) {
+  //  header("Location: /");
+   // die("Erro: Página não encontrada!");
+//}
+
 /**
- * ConfigController gerencia a URL da solicitação e carrega o controlador correspondente.
+ * Recebe a URL e manipula
+ * Carregar a CONTROLLER
+ * 
+ * @author 
  */
 class ConfigController extends Config
 {
+    /** @var string $url Recebe a URL do .htaccess */
     private string $url;
+    /** @var array $urlArray Recebe a URL convertida para array */
     private array $urlArray;
     private string $urlController;
+    /*private string $urlParameter;*/
     private string $urlSlugController;
     private array $format;
 
     /**
-     * Construtor da classe.
-     * Processa a URL e define o controlador a ser usado.
+     * Recebe a URL do .htaccess
+     * Validar a URL
      */
     public function __construct()
     {
         $this->config();
-        
-        $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT) ?: '';
-        $this->clearUrl();
-        $this->urlArray = explode("/", $this->url);
-        $this->urlController = isset($this->urlArray[0]) 
-            ? $this->slugController($this->urlArray[0]) 
-            : $this->slugController(CONTROLLERERRO);
-        
-        echo "Controller: {$this->urlController}<br>";        
+        if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
+            $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
+
+            $this->clearUrl();
+
+            $this->urlArray = explode("/", $this->url);
+
+            if (isset($this->urlArray[0])) {
+                $this->urlController = $this->slugController($this->urlArray[0]);
+            } else {
+                $this->urlController = $this->slugController(CONTROLLERERRO);
+            }
+        } else {
+            $this->urlController = $this->slugController(CONTROLLER);
+        }
+
+        echo "Controller: {$this->urlController}<br>";
     }
 
     /**
-     * Limpa e formata a URL.
+     * Método privado não pode ser instanciado fora da classe
+     * Limpara a URL, elimando as TAG, os espaços em brancos, retirar a barra no final da URL e retirar os caracteres especiais
+     *
+     * @return void
      */
-    private function clearUrl()
+    private function clearUrl(): void
     {
-        $this->url = strip_tags(trim($this->url));
+        //Eliminar as tag
+        $this->url = strip_tags($this->url);
+        //Eliminar espaços em branco
+        $this->url = trim($this->url);
+        //Eliminar a barra no final da URL
         $this->url = rtrim($this->url, "/");
+        //Eliminar caracteres 
         $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª ';
         $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr-------------------------------------------------------------------------------------------------';
         //$this->url = strtr(utf8_decode($this->url), utf8_decode($this->format['a']), $this->format['b']);
     }
 
     /**
-     * Formata o nome do controlador para um formato de slug.
-     * 
-     * @param string $slugController Nome do controlador
-     * @return string Nome do controlador formatado
+     * Converter o valor obtido da URL "sobre-empresa" e converter no formato da classe "SobreEmpresa".
+     * Utilizado as funções para converter tudo para minúsculo, converter o traço pelo espaço, converter cada letra da primeira palavra para maiúsculo, retirar os espaços em branco
+     *
+     * @param string $slugController Nome da classe
+     * @return string Retorna a controller "sobre-empresa" convertido para o nome da Classe "SobreEmpresa"
      */
-    private function slugController(string $slugController): string
+    private function slugController($slugController): string
     {
+        //Converter para minusculo
         $this->urlSlugController = strtolower($slugController);
+        //Converter o traco para espaco em braco
         $this->urlSlugController = str_replace("-", " ", $this->urlSlugController);
+        //Converter a primeira letra de cada palavra para maiusculo
         $this->urlSlugController = ucwords($this->urlSlugController);
-        return str_replace(" ", "", $this->urlSlugController);
+        //Retirar espaco em branco
+        $this->urlSlugController = str_replace(" ", "", $this->urlSlugController);
+        return $this->urlSlugController;
     }
 
     /**
-     * Carrega e executa o controlador correspondente.
+     * Carregar as Controllers.
+     * Instanciar as classes da controller e carregar o método index.
+     *
+     * @return void
      */
-    public function loadPage()
+    public function loadPage(): void
     {
         $classLoad = "\\Sts\\Controllers\\" . $this->urlController;
         $classPage = new $classLoad();
-        $classPage->index(); 
+        $classPage->index();
     }
 }
