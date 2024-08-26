@@ -2,27 +2,39 @@
 
 namespace Core;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('C7E3L8K9E5')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
- * Config fornece configurações básicas para o projeto.
- * 
- * Esta classe define constantes usadas na aplicação, como URLs e credenciais.
+ * Configurações básicas do site.
  */
+
 abstract class Config
 {
+
     /**
-     * Define configurações essenciais do projeto.
-     * - URL base do projeto
-     * - URL do painel administrativo
-     * - Controlador padrão e controlador de erro
-     * - Credenciais de email
+     * Possui as constantes com as configurações.
+     * Configurações de endereço do projeto.
+     * Página principal do projeto.
+     * Credenciais de acesso ao banco de dados
+     * E-mail do administrador.
+     * 
+     * @return void
      */
     protected function config(): void
     {
+        //URL do projeto
         define('URL', 'http://localhost/mvc-php-Site/');
         define('URLADM', 'http://localhost/mvc-php-Site/adm/');
-        
+
         define('CONTROLLER', 'Home');
         define('CONTROLLERERRO', 'Erro');
-        define('EMAILADM', 'seu email');
+
+        //Credenciais do banco de dados
+
+        define('EMAILADM', 'seu-EMAIL');
     }
 }

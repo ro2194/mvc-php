@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php 
-        // Inclui o autoload do Composer para carregar as dependências
-        require './vendor/autoload.php';
+<?php
 
-        // Cria uma nova instância do controlador de configuração
-        $url = new Core\ConfigController;
-    ?>
-</body>
-</html>
+//Constante que define que o usuário está acessando páginas internas através da página "index.php".
+define('C7E3L8K9E5', true);
+
+//Carregar o Composer
+require './vendor/autoload.php';
+
+//Instanciar a classe ConfigController, responsável em tratar a URL
+$url = new Core\ConfigController();
+
+//Instanciar o método para carregar a página/controller
+$url->loadPage();
+

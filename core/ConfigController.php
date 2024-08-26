@@ -3,16 +3,16 @@
 namespace Core;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-//if (!defined('C7E3L8K9E5')) {
-   // header("Location: /");
-   // die("Erro: Página não encontrada!");
-//}
+if (!defined('C7E3L8K9E5')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 
 /**
  * Recebe a URL e manipula
  * Carregar a CONTROLLER
  * 
- * @author 
+ 
  */
 class ConfigController extends Config
 {
@@ -48,7 +48,7 @@ class ConfigController extends Config
             $this->urlController = $this->slugController(CONTROLLER);
         }
 
-        echo "Controller: {$this->urlController}<br>";
+      
     }
 
     /**
@@ -72,9 +72,11 @@ class ConfigController extends Config
     }
 
     /**
+     * Converter o valor obtido da URL "sobre-empresa" e converter no formato da classe "SobreEmpresa".
      * Utilizado as funções para converter tudo para minúsculo, converter o traço pelo espaço, converter cada letra da primeira palavra para maiúsculo, retirar os espaços em branco
      *
      * @param string $slugController Nome da classe
+     * @return string Retorna a controller "sobre-empresa" convertido para o nome da Classe "SobreEmpresa"
      */
     private function slugController($slugController): string
     {
