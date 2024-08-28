@@ -23,3 +23,16 @@ Este projeto é uma aplicação PHP utilizando o padrão MVC (Model-View-Control
    ```bash
    cd meu_projeto
    composer install
+
+   ```bash
+ 3. **Rodar a Aplicação com o Servidor Embutido do PHP (Alternativa ao XAMPP)**
+   php -S localhost:8080 -t public
+
+   
+### Explicações:
+
+- **Rodar a Aplicação com o Servidor Embutido do PHP**: Essa seção foi adicionada para instruir os usuários sobre como rodar a aplicação sem precisar de um servidor como o XAMPP, utilizando o servidor embutido do PHP.
+- **`-t public`**: Isso especifica que o servidor deve servir arquivos a partir do diretório `public`.
+
+Essas instruções cobrem tanto a execução com XAMPP quanto com o servidor embutido do PHP, dando flexibilidade para diferentes ambientes de desenvolvimento.
+
