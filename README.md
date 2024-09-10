@@ -26,7 +26,7 @@ Este projeto é uma aplicação PHP utilizando o padrão MVC (Model-View-Control
 
    ```bash
  3. **Rodar a Aplicação com o Servidor Embutido do PHP (Alternativa ao XAMPP)**
-   php -S localhost:8080 -t public
+   php -S localhost:8080 
 
    
 ### Explicações:

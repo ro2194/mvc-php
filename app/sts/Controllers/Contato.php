@@ -28,6 +28,6 @@ class Contato
     {
         $this->data = "Mensagem enviada com sucesso!<br>";
         $loadView = new \Core\ConfigView("sts/Views/contato/contato", $this->data);
-        $loadView->loadView();
+        $loadView->loadView();      
     }
 }
